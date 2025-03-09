@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Find Your Best Career Path</h2>
+        <form id="careerForm">
+            <div class="question">
+                <label>Do you prefer working with tools and hands-on projects?</label><br>
+                <input type="radio" name="handsOn" value="yes"> Yes
+                <input type="radio" name="handsOn" value="no"> No
+            </div>
+            <div class="question">
+                <label>Would you enjoy working with animals?</label><br>
+                <input type="radio" name="animals" value="yes"> Yes
+                <input type="radio" name="animals" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you like solving puzzles and logical problems?</label><br>
+                <input type="radio" name="puzzles" value="yes"> Yes
+                <input type="radio" name="puzzles" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you enjoy helping people with their personal problems?</label><br>
+                <input type="radio" name="helping" value="yes"> Yes
+                <input type="radio" name="helping" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you enjoy writing and communication?</label><br>
+                <input type="radio" name="writing" value="yes"> Yes
+                <input type="radio" name="writing" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you like working in a fast-paced environment?</label><br>
+                <input type="radio" name="fastPaced" value="yes"> Yes
+                <input type="radio" name="fastPaced" value="no"> No
+            </div>
+            <div class="question">
+                <label>Would you like to work in the medical field?</label><br>
+                <input type="radio" name="medical" value="yes"> Yes
+                <input type="radio" name="medical" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you prefer working independently?</label><br>
+                <input type="radio" name="independent" value="yes"> Yes
+                <input type="radio" name="independent" value="no"> No
+            </div>
+            <div class="question">
+                <label>Do you like working with technology and computers?</label><br>
+                <input type="radio" name="technology" value="yes"> Yes
+                <input type="radio" name="technology" value="no"> No
+            </div>
+            <button type="button" onclick="getCareer()">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        function getCareer() {
+            let result = document.getElementById("result");
+            let answers = {
+                handsOn: document.querySelector('input[name="handsOn"]:checked')?.value,
+                animals: document.querySelector('input[name="animals"]:checked')?.value,
+                puzzles: document.querySelector('input[name="puzzles"]:checked')?.value,
+                helping: document.querySelector('input[name="helping"]:checked')?.value,
+                writing: document.querySelector('input[name="writing"]:checked')?.value,
+                fastPaced: document.querySelector('input[name="fastPaced"]:checked')?.value,
+                medical: document.querySelector('input[name="medical"]:checked')?.value,
+                independent: document.querySelector('input[name="independent"]:checked')?.value,
+                technology: document.querySelector('input[name="technology"]:checked')?.value
+            };
+            
+            let careerOptions = [];
+            if (answers.handsOn === "yes") {
+                careerOptions.push("Carpenter", "Mechanic", "Construction Manager", "Electrician");
+            }
+            if (answers.animals === "yes") {
+                careerOptions.push("Veterinarian", "Zoologist", "Animal Trainer", "Wildlife Biologist");
+            }
+            if (answers.puzzles === "yes") {
+                careerOptions.push("Mathematician", "Data Analyst", "Software Engineer", "Cryptographer");
+            }
+            if (answers.helping === "yes") {
+                careerOptions.push("Psychologist", "Social Worker", "Counselor", "Life Coach");
+            }
+            if (answers.writing === "yes") {
+                careerOptions.push("Journalist", "Author", "Editor", "Content Strategist");
+            }
+            if (answers.fastPaced === "yes") {
+                careerOptions.push("Stockbroker", "Event Planner", "Emergency Medical Technician", "Advertising Executive");
+            }
+            if (answers.medical === "yes") {
+                careerOptions.push("Doctor", "Nurse", "Radiologist", "Surgeon");
+            }
+            if (answers.independent === "yes") {
+                careerOptions.push("Freelancer", "Entrepreneur", "Consultant", "Artist");
+            }
+            if (answers.technology === "yes") {
+                careerOptions.push("Software Developer", "AI Engineer", "Cybersecurity Specialist", "Web Developer");
+            }
+            
+            if (careerOptions.length === 0) {
+                result.innerHTML = "Try again by selecting some preferences!";
+            } else {
+                let shuffled = careerOptions.sort(() => 0.5 - Math.random());
+                let selectedCareers = shuffled.slice(0, 5);
+                result.innerHTML = "Top Career Matches: " + selectedCareers.join(", ");
+            }
+        }
+    </script>
+</body>
+</html>
